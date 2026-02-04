@@ -586,25 +586,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        // Handle form submission and redirect to phished.html
-        document.getElementById('loginForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Get form data (for Gophish tracking)
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
-            
-            // Optional: Send data to Gophish (if configured)
-            // This would normally be handled by Gophish's landing page capture
-            
-            // Redirect to phished.html after a short delay
-            setTimeout(function() {
-                window.location.href = 'phished.html';
-            }, 500);
-        });
-    </script>
 </body>
 
 </html>
