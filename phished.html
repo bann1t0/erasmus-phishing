@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sei Stato Phishato!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            overflow: hidden;
+        }
+
+        .container {
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            max-width: 700px;
+            width: 100%;
+            padding: 50px 40px;
+            text-align: center;
+            animation: bounceIn 0.8s ease-out;
+        }
+
+        @keyframes bounceIn {
+            0% {
+                opacity: 0;
+                transform: scale(0.3);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            70% {
+                transform: scale(0.9);
+            }
+
+            100% {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        h1 {
+            color: #ff6b6b;
+            font-size: 48px;
+            font-weight: 700;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            animation: shake 0.5s ease-in-out 0.5s;
+        }
+
+        @keyframes shake {
+
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+
+            25% {
+                transform: translateX(-10px);
+            }
+
+            75% {
+                transform: translateX(10px);
+            }
+        }
+
+        .cotoletta-container {
+            margin: 30px 0;
+            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
+            padding: 30px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        .cotoletta {
+            width: 100%;
+            max-width: 500px;
+            height: 250px;
+            object-fit: cover;
+            border-radius: 12px;
+            animation: spin 2s linear infinite;
+            transform: scaleX(2.5);
+            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+        }
+
+        @keyframes spin {
+            from {
+                transform: scaleX(2.5) rotate(0deg);
+            }
+
+            to {
+                transform: scaleX(2.5) rotate(360deg);
+            }
+        }
+
+        .message {
+            background-color: #fff3cd;
+            border: 3px solid #ffc107;
+            border-radius: 12px;
+            padding: 25px;
+            margin: 30px 0;
+            color: #856404;
+        }
+
+        .message h2 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #ff6b6b;
+        }
+
+        .message p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .tips {
+            background-color: #f8f9fa;
+            border-left: 5px solid #0066cc;
+            padding: 20px;
+            margin: 25px 0;
+            text-align: left;
+            border-radius: 8px;
+        }
+
+        .tips h3 {
+            color: #003399;
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .tips ul {
+            list-style-position: inside;
+            color: #333333;
+            font-size: 15px;
+            line-height: 1.8;
+        }
+
+        .tips li {
+            margin-bottom: 8px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 2px solid #e0e0e0;
+            color: #666666;
+            font-size: 14px;
+        }
+
+        .emoji {
+            font-size: 60px;
+            margin-bottom: 20px;
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            100% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="emoji">🎣</div>
+
+        <h1>🚨 SEI STATO PHISHATO! 🚨</h1>
+
+        <div class="cotoletta-container">
+            <img src="https://media.tenor.com/yDGwwkDE1UYAAAAM/cotoletta-chicken.gif" alt="Cotoletta che gira"
+                class="cotoletta">
+        </div>
+
+        <div class="message">
+            <h2>⚠️ Questo era un test di sicurezza!</h2>
+            <p><strong>Hai appena inserito le tue credenziali istituzionali in un sito di phishing simulato.</strong>
+            </p>
+            <p>Se questa fosse stata una vera email di phishing, i tuoi dati sarebbero stati compromessi! 😱</p>
+        </div>
+
+        <div class="tips">
+            <h3>🛡️ Come proteggerti dal phishing:</h3>
+            <ul>
+                <li>✅ <strong>Verifica sempre l'URL</strong> del sito prima di inserire credenziali</li>
+                <li>✅ <strong>Diffida delle email urgenti</strong> che richiedono azioni immediate</li>
+                <li>✅ <strong>Controlla il mittente</strong> - le email ufficiali hanno domini verificati</li>
+                <li>✅ <strong>Non cliccare su link sospetti</strong> - vai direttamente al sito ufficiale</li>
+                <li>✅ <strong>Usa l'autenticazione a due fattori (2FA)</strong> quando possibile</li>
+                <li>✅ <strong>In caso di dubbio, contatta l'istituzione</strong> tramite canali ufficiali</li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            <p><strong>Questo è stato un test di consapevolezza sulla sicurezza informatica.</strong></p>
+            <p>Le tue credenziali sono state registrate solo a scopo educativo e verranno eliminate.</p>
+            <p>Per domande, contatta il team di sicurezza IT.</p>
+        </div>
+    </div>
+</body>
+
+</html>

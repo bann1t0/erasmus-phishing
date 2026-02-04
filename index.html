@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Autenticazione Portale Studenti - Europe for Youth</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            height: 100vh;
+            width: 100vw;
+            display: block;
+            padding: 0;
+            position: relative;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        /* Animated background particles */
+        body::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background-image:
+                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
+            animation: float 20s ease-in-out infinite;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translate(0, 0);
+            }
+
+            33% {
+                transform: translate(30px, -30px);
+            }
+
+            66% {
+                transform: translate(-20px, 20px);
+            }
+        }
+
+        .container {
+            background: #ffffff;
+            border-radius: 0;
+            box-shadow: none;
+            max-width: 100%;
+            width: 100%;
+            height: 100vh;
+            overflow-y: auto;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            padding: 45px 40px;
+            text-align: center;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::after {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
+            animation: pulse 4s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.5;
+            }
+
+            50% {
+                transform: scale(1.1);
+                opacity: 0.8;
+            }
+        }
+
+        .header h1 {
+            font-size: 30px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.5px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 500;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+            position: relative;
+            z-index: 1;
+        }
+
+        .content {
+            padding: 45px 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            flex: 1;
+        }
+
+        .status-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
+            color: #ffffff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            margin-bottom: 24px;
+            box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
+        }
+
+        .welcome-text {
+            margin-bottom: 32px;
+        }
+
+        .welcome-text h2 {
+            color: #1a202c;
+            font-size: 24px;
+            margin-bottom: 12px;
+            font-weight: 700;
+            line-height: 1.3;
+        }
+
+        .welcome-text p {
+            color: #718096;
+            font-size: 15px;
+            line-height: 1.6;
+        }
+
+        .info-card {
+            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 28px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        }
+
+        .info-card h3 {
+            color: #2d3748;
+            font-size: 15px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .info-card p {
+            color: #4a5568;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .info-item {
+            background: #ffffff;
+            padding: 12px;
+            border-radius: 6px;
+            border: 1px solid #e2e8f0;
+        }
+
+        .info-item-label {
+            font-size: 11px;
+            color: #a0aec0;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 4px;
+        }
+
+        .info-item-value {
+            font-size: 14px;
+            color: #2d3748;
+            font-weight: 700;
+        }
+
+        .form-group {
+            margin-bottom: 24px;
+        }
+
+        .form-group label {
+            display: block;
+            color: #2d3748;
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            letter-spacing: 0.3px;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 16px 18px;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            font-size: 15px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            font-family: inherit;
+            background: #ffffff;
+            cursor: text;
+            color: #2d3748;
+            caret-color: #2d3748;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .form-group input::placeholder {
+            color: #cbd5e0;
+        }
+
+        .security-notice {
+            background: linear-gradient(135deg, #e6f2ff 0%, #cce5ff 100%);
+            border: 1px solid #4a90e2;
+            padding: 16px;
+            border-radius: 8px;
+            margin-bottom: 28px;
+            font-size: 13px;
+            color: #1a4d7a;
+            line-height: 1.6;
+        }
+
+        .submit-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+            color: #ffffff;
+            border: none;
+            padding: 18px;
+            border-radius: 10px;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 8px 20px rgba(30, 60, 114, 0.3);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .submit-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .submit-btn:hover::before {
+            left: 100%;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 28px rgba(30, 60, 114, 0.4);
+        }
+
+        .submit-btn:active {
+            transform: translateY(-1px);
+        }
+
+        .footer {
+            background: linear-gradient(180deg, #f7fafc 0%, #edf2f7 100%);
+            padding: 28px 40px;
+            text-align: center;
+            border-top: 1px solid #e2e8f0;
+        }
+
+        .footer p {
+            color: #718096;
+            font-size: 12px;
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .footer-links {
+            margin-top: 12px;
+        }
+
+        .footer-links a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 600;
+            margin: 0 8px;
+            font-size: 12px;
+        }
+
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+
+        .timer {
+            display: inline-block;
+            background: linear-gradient(135deg, #fc8181 0%, #f56565 100%);
+            color: #ffffff;
+            padding: 8px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 700;
+            margin-top: 8px;
+            box-shadow: 0 4px 12px rgba(245, 101, 101, 0.3);
+        }
+
+        /* Responsive Design */
+        @media screen and (max-width: 768px) {
+            body {
+                padding: 10px;
+                height: 100vh;
+            }
+
+            .container {
+                border-radius: 16px;
+                max-height: 98vh;
+            }
+
+            .header {
+                padding: 35px 30px;
+            }
+
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .header p {
+                font-size: 12px;
+            }
+
+            .content {
+                padding: 35px 30px;
+            }
+
+            .welcome-text h2 {
+                font-size: 20px;
+            }
+
+            .welcome-text p {
+                font-size: 14px;
+            }
+
+            .info-card {
+                padding: 16px;
+            }
+
+            .info-grid {
+                gap: 10px;
+            }
+
+            .info-item {
+                padding: 10px;
+            }
+
+            .security-notice {
+                padding: 14px;
+                font-size: 12px;
+            }
+
+            .timer {
+                font-size: 12px;
+                padding: 6px 12px;
+            }
+
+            .submit-btn {
+                padding: 16px;
+                font-size: 14px;
+            }
+
+            .footer {
+                padding: 24px 30px;
+            }
+        }
+
+        @media screen and (max-width: 480px) {
+            body {
+                padding: 5px;
+                height: 100vh;
+            }
+
+            .container {
+                border-radius: 12px;
+                max-height: 99vh;
+            }
+
+            .header {
+                padding: 30px 20px;
+            }
+
+            .header h1 {
+                font-size: 20px;
+            }
+
+            .header p {
+                font-size: 10px;
+                letter-spacing: 1px;
+            }
+
+            .content {
+                padding: 30px 20px;
+            }
+
+            .status-badge {
+                font-size: 11px;
+                padding: 8px 16px;
+            }
+
+            .welcome-text h2 {
+                font-size: 18px;
+            }
+
+            .welcome-text p {
+                font-size: 13px;
+            }
+
+            .info-card h3 {
+                font-size: 14px;
+            }
+
+            .info-card p {
+                font-size: 13px;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+                gap: 8px;
+            }
+
+            .form-group input {
+                padding: 14px 16px;
+                font-size: 14px;
+            }
+
+            .submit-btn {
+                padding: 14px;
+                font-size: 13px;
+            }
+
+            .footer {
+                padding: 20px;
+            }
+
+            .footer p {
+                font-size: 11px;
+            }
+
+            .footer-links a {
+                font-size: 11px;
+                margin: 0 6px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>EUROPE FOR YOUTH</h1>
+            <p>Portale Autenticazione Studenti</p>
+        </div>
+
+        <div class="content">
+            <div style="text-align: center;">
+                <span class="status-badge">Pre-Approvato</span>
+            </div>
+
+            <div class="welcome-text">
+                <h2>Conferma la Tua Mobilità Erasmus+</h2>
+                <p>Autenticati con le tue credenziali istituzionali per accedere al tuo pacchetto di mobilità
+                    personalizzato e completare il processo di conferma.</p>
+            </div>
+
+            <div class="info-card">
+                <h3>La Tua Assegnazione di Mobilità</h3>
+                <p>Algarve, Portogallo - 8-22 Giugno 2026</p>
+                <div class="info-grid">
+                    <div class="info-item">
+                        <div class="info-item-label">Valore Totale</div>
+                        <div class="info-item-value">€2.440,00</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-item-label">Durata Programma</div>
+                        <div class="info-item-value">14 Giorni</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-item-label">Alloggio</div>
+                        <div class="info-item-value">A Tuo Carico</div>
+                    </div>
+                    <div class="info-item">
+                        <div class="info-item-label">Trasferimento Borsa</div>
+                        <div class="info-item-value">5 Giorni</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="security-notice">
+                <strong>ℹ️ Informazioni Importanti</strong><br>
+                Dopo la conferma, riceverai via email:
+                <ul style="margin: 8px 0 0 20px; padding: 0;">
+                    <li>Dettagli per la prenotazione del volo</li>
+                    <li>Istruzioni per il trasferimento della borsa</li>
+                    <li>Documentazione necessaria per la mobilità</li>
+                </ul>
+            </div>
+
+            <form method="POST" action="#" id="loginForm">
+                <div class="form-group">
+                    <label for="email">Indirizzo Email Istituzionale</label>
+                    <input type="email" id="email" name="email" placeholder="nome.cognome@itsrizzoli.it" required
+                        autocomplete="email">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password"
+                        placeholder="Inserisci la tua password istituzionale" required autocomplete="current-password">
+                </div>
+
+                <button type="submit" class="submit-btn">
+                    Autentica e Conferma Partecipazione
+                </button>
+            </form>
+        </div>
+
+        <div class="footer">
+            <p>
+                <strong>Europe for Youth</strong> - Programma Mobilità Erasmus+<br>
+                Autenticazione sicura tramite integrazione SSO istituzionale
+            </p>
+            <div class="footer-links">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Termini di Servizio</a>
+                <a href="#">Supporto</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Handle form submission and redirect to phished.html
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data (for Gophish tracking)
+            const email = document.getElementById('email').value;
+            const password = document.getElementById('password').value;
+            
+            // Optional: Send data to Gophish (if configured)
+            // This would normally be handled by Gophish's landing page capture
+            
+            // Redirect to phished.html after a short delay
+            setTimeout(function() {
+                window.location.href = 'phished.html';
+            }, 500);
+        });
+    </script>
+</body>
+
+</html>
