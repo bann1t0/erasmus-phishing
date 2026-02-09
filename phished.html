@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sei Stato Phishato!</title>
+    <title>Security Awareness - Phishing Simulation</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,211 +16,448 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
-            min-height: 100vh;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            background: #0f172a;
+            color: #e2e8f0;
+            line-height: 1.6;
+        }
+
+        .video-banner {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            overflow: hidden;
+            background: #000;
+        }
+
+        .video-banner video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.8;
+        }
+
+        .video-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(180deg, rgba(15, 23, 42, 0.3) 0%, rgba(15, 23, 42, 0.9) 100%);
             display: flex;
+            flex-direction: column;
             align-items: center;
             justify-content: center;
-            padding: 20px;
-            overflow: hidden;
-        }
-
-        .container {
-            background: #ffffff;
-            border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-            max-width: 700px;
-            width: 100%;
-            padding: 50px 40px;
             text-align: center;
-            animation: bounceIn 0.8s ease-out;
+            padding: 32px;
         }
 
-        @keyframes bounceIn {
-            0% {
-                opacity: 0;
-                transform: scale(0.3);
-            }
-
-            50% {
-                transform: scale(1.05);
-            }
-
-            70% {
-                transform: scale(0.9);
-            }
-
-            100% {
-                opacity: 1;
-                transform: scale(1);
-            }
-        }
-
-        h1 {
-            color: #ff6b6b;
+        .video-overlay h1 {
             font-size: 48px;
-            font-weight: 700;
-            margin-bottom: 30px;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-            animation: shake 0.5s ease-in-out 0.5s;
+            font-weight: 800;
+            color: #ffffff;
+            margin-bottom: 16px;
+            text-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 0.8s ease-out;
         }
 
-        @keyframes shake {
-
-            0%,
-            100% {
-                transform: translateX(0);
-            }
-
-            25% {
-                transform: translateX(-10px);
-            }
-
-            75% {
-                transform: translateX(10px);
-            }
+        .video-overlay p {
+            font-size: 20px;
+            font-weight: 500;
+            color: #f1f5f9;
+            text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+            animation: fadeInUp 1s ease-out;
         }
 
-        .cotoletta-container {
-            margin: 30px 0;
-            background: linear-gradient(135deg, #ffeaa7 0%, #fdcb6e 100%);
-            padding: 30px;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-        }
-
-        .cotoletta {
-            width: 100%;
-            max-width: 500px;
-            height: 250px;
-            object-fit: cover;
-            border-radius: 12px;
-            animation: spin 2s linear infinite;
-            transform: scaleX(2.5);
-            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
-        }
-
-        @keyframes spin {
+        @keyframes fadeInUp {
             from {
-                transform: scaleX(2.5) rotate(0deg);
+                opacity: 0;
+                transform: translateY(20px);
             }
 
             to {
-                transform: scaleX(2.5) rotate(360deg);
+                opacity: 1;
+                transform: translateY(0);
             }
         }
 
-        .message {
-            background-color: #fff3cd;
-            border: 3px solid #ffc107;
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 48px 24px;
+        }
+
+        .alert-box {
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
             border-radius: 12px;
-            padding: 25px;
-            margin: 30px 0;
-            color: #856404;
+            padding: 32px;
+            margin-bottom: 48px;
+            box-shadow: 0 8px 24px rgba(220, 38, 38, 0.3);
         }
 
-        .message h2 {
+        .alert-box h2 {
             font-size: 24px;
-            margin-bottom: 15px;
-            color: #ff6b6b;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 16px;
         }
 
-        .message p {
+        .alert-box p {
             font-size: 16px;
+            color: #fecaca;
+            line-height: 1.7;
+        }
+
+        .alert-box strong {
+            color: #ffffff;
+        }
+
+        .section {
+            background: #1e293b;
+            border-radius: 12px;
+            padding: 32px;
+            margin-bottom: 32px;
+            border: 1px solid #334155;
+        }
+
+        .section h2 {
+            font-size: 22px;
+            font-weight: 700;
+            color: #f1f5f9;
+            margin-bottom: 24px;
+            padding-bottom: 16px;
+            border-bottom: 2px solid #334155;
+        }
+
+        .red-flags {
+            list-style: none;
+            padding: 0;
+        }
+
+        .red-flags li {
+            background: #0f172a;
+            border-left: 4px solid #ef4444;
+            padding: 20px;
+            margin-bottom: 16px;
+            border-radius: 8px;
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .red-flags li:hover {
+            transform: translateX(4px);
+            box-shadow: 0 4px 12px rgba(239, 68, 68, 0.2);
+        }
+
+        .red-flags .flag-title {
+            font-size: 16px;
+            font-weight: 700;
+            color: #fbbf24;
+            margin-bottom: 8px;
+            display: block;
+        }
+
+        .red-flags .flag-detail {
+            font-size: 14px;
+            color: #cbd5e1;
             line-height: 1.6;
+        }
+
+        .red-flags .flag-example {
+            font-size: 13px;
+            color: #94a3b8;
+            font-style: italic;
+            margin-top: 8px;
+            padding-top: 8px;
+            border-top: 1px solid #334155;
+        }
+
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 24px;
+        }
+
+        .analysis-card {
+            background: #0f172a;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 24px;
+            transition: border-color 0.3s ease;
+        }
+
+        .analysis-card:hover {
+            border-color: #ef4444;
+        }
+
+        .analysis-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            color: #f59e0b;
             margin-bottom: 12px;
         }
 
-        .tips {
-            background-color: #f8f9fa;
-            border-left: 5px solid #0066cc;
-            padding: 20px;
-            margin: 25px 0;
-            text-align: left;
-            border-radius: 8px;
+        .analysis-card p {
+            font-size: 14px;
+            color: #cbd5e1;
         }
 
-        .tips h3 {
-            color: #003399;
-            font-size: 20px;
-            margin-bottom: 15px;
+        .cta-box {
+            background: linear-gradient(135deg, #10b981 0%, #059669 100%);
+            border-radius: 12px;
+            padding: 32px;
+            text-align: center;
+            box-shadow: 0 8px 24px rgba(16, 185, 129, 0.3);
         }
 
-        .tips ul {
-            list-style-position: inside;
-            color: #333333;
-            font-size: 15px;
-            line-height: 1.8;
+        .cta-box h2 {
+            font-size: 24px;
+            font-weight: 700;
+            color: #ffffff;
+            margin-bottom: 16px;
         }
 
-        .tips li {
-            margin-bottom: 8px;
+        .cta-box p {
+            font-size: 16px;
+            color: #d1fae5;
+            line-height: 1.7;
         }
 
         .footer {
-            margin-top: 30px;
-            padding-top: 20px;
-            border-top: 2px solid #e0e0e0;
-            color: #666666;
+            text-align: center;
+            padding: 32px 24px;
+            color: #64748b;
             font-size: 14px;
         }
 
-        .emoji {
-            font-size: 60px;
-            margin-bottom: 20px;
-            animation: bounce 1s ease-in-out infinite;
+        .footer strong {
+            color: #94a3b8;
         }
 
-        @keyframes bounce {
-
-            0%,
-            100% {
-                transform: translateY(0);
+        @media (max-width: 768px) {
+            .video-banner {
+                height: 300px;
             }
 
-            50% {
-                transform: translateY(-20px);
+            .video-overlay h1 {
+                font-size: 32px;
+            }
+
+            .video-overlay p {
+                font-size: 16px;
+            }
+
+            .container {
+                padding: 32px 16px;
+            }
+
+            .alert-box,
+            .section,
+            .cta-box {
+                padding: 24px;
+            }
+
+            .analysis-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
 </head>
 
 <body>
+    <!-- Video Banner -->
+    <div class="video-banner">
+        <video autoplay muted loop playsinline>
+            <source src="VID-20260206-WA0000.mp4" type="video/mp4">
+            Your browser does not support the video tag.
+        </video>
+        <div class="video-overlay">
+            <h1>Sei Stato Phishato</h1>
+            <p>Questa era una simulazione di phishing a scopo educativo</p>
+        </div>
+    </div>
+
     <div class="container">
-        <div class="emoji">🎣</div>
-
-        <h1>🚨 SEI STATO PHISHATO! 🚨</h1>
-
-        <div class="cotoletta-container">
-            <img src="https://media.tenor.com/yDGwwkDE1UYAAAAM/cotoletta-chicken.gif" alt="Cotoletta che gira"
-                class="cotoletta">
-        </div>
-
-        <div class="message">
-            <h2>⚠️ Questo era un test di sicurezza!</h2>
-            <p><strong>Hai appena inserito le tue credenziali istituzionali in un sito di phishing simulato.</strong>
+        <!-- Alert principale -->
+        <div class="alert-box">
+            <h2>ATTENZIONE: Hai inserito le tue credenziali in un sito fraudolento</h2>
+            <p>
+                Fortunatamente questa era solo una <strong>simulazione educativa</strong> e i tuoi dati sono al sicuro.
+                Tuttavia, in un attacco reale, i criminali informatici avrebbero ora pieno accesso al tuo account
+                istituzionale, inclusi i tuoi dati personali, email e documenti riservati.
             </p>
-            <p>Se questa fosse stata una vera email di phishing, i tuoi dati sarebbero stati compromessi! 😱</p>
         </div>
 
-        <div class="tips">
-            <h3>🛡️ Come proteggerti dal phishing:</h3>
-            <ul>
-                <li>✅ <strong>Verifica sempre l'URL</strong> del sito prima di inserire credenziali</li>
-                <li>✅ <strong>Diffida delle email urgenti</strong> che richiedono azioni immediate</li>
-                <li>✅ <strong>Controlla il mittente</strong> - le email ufficiali hanno domini verificati</li>
-                <li>✅ <strong>Non cliccare su link sospetti</strong> - vai direttamente al sito ufficiale</li>
-                <li>✅ <strong>Usa l'autenticazione a due fattori (2FA)</strong> quando possibile</li>
-                <li>✅ <strong>In caso di dubbio, contatta l'istituzione</strong> tramite canali ufficiali</li>
+        <!-- Analisi Red Flags Specifici -->
+        <div class="section">
+            <h2>Analisi degli Indicatori di Phishing Presenti in Questa Campagna</h2>
+            <ul class="red-flags">
+                <li>
+                    <span class="flag-title">1. URL del Dominio Non Ufficiale</span>
+                    <span class="flag-detail">
+                        Il sito utilizzava il dominio <code>europeforyouth.eu</code>, che NON è un dominio
+                        istituzionale ufficiale. I programmi Erasmus+ utilizzano domini governativi o universitari
+                        affidabili (es. <code>.gov.it</code>, <code>.unibo.it</code>, <code>.ec.europa.eu</code>).
+                    </span>
+                    <span class="flag-example">
+                        Red Flag: Un dominio generico acquistabile da chiunque non può ospitare servizi ufficiali EU.
+                    </span>
+                </li>
+
+                <li>
+                    <span class="flag-title">2. Richiesta Credenziali via Email</span>
+                    <span class="flag-detail">
+                        L'email richiedeva di "confermare la partecipazione" tramite login con credenziali
+                        istituzionali. Le istituzioni legittime NON chiedono MAI di inserire password tramite link
+                        nelle email.
+                    </span>
+                    <span class="flag-example">
+                        Red Flag: Qualsiasi email che richiede di "verificare l'account" o "confermare con le
+                        credenziali" è sospetta.
+                    </span>
+                </li>
+
+                <li>
+                    <span class="flag-title">3. Senso di Urgenza Artificiale</span>
+                    <span class="flag-detail">
+                        L'email indicava una scadenza ravvicinata (es. "entro il 15 febbraio") per creare pressione
+                        psicologica e forzare una decisione affrettata senza verifiche approfondite.
+                    </span>
+                    <span class="flag-example">
+                        Red Flag: I phisher sfruttano l'urgenza per bypassare il pensiero critico della vittima.
+                    </span>
+                </li>
+
+                <li>
+                    <span class="flag-title">4. Mittente Email Non Verificabile</span>
+                    <span class="flag-detail">
+                        Anche se l'email sembrava provenire da "mobility@europeforyouth.eu", chiunque può falsificare
+                        l'indirizzo mittente. Verifica sempre il dominio ufficiale del mittente nei database
+                        istituzionali.
+                    </span>
+                    <span class="flag-example">
+                        Red Flag: L'assenza di firma PGP/DKIM o certificati digitali validi indica comunicazione non
+                        autenticata.
+                    </span>
+                </li>
+
+                <li>
+                    <span class="flag-title">5. Mancanza di Certificato SSL Valido (o HTTP invece di HTTPS)</span>
+                    <span class="flag-detail">
+                        Sebbene il sito potesse avere HTTPS, il certificato era generico (Let's Encrypt gratuito) e
+                        non un certificato EV (Extended Validation) che mostra il nome dell'organizzazione verificata
+                        nella barra degli indirizzi.
+                    </span>
+                    <span class="flag-example">
+                        Red Flag: Siti sensibili istituzionali usano certificati EV con validazione dell'identità
+                        dell'organizzazione.
+                    </span>
+                </li>
+
+                <li>
+                    <span class="flag-title">6. Design Generico e Stock Photos</span>
+                    <span class="flag-detail">
+                        La landing page utilizzava immagini stock generiche e un design non personalizzato con
+                        l'identità
+                        visiva ufficiale dell'Erasmus+ o delle istituzioni coinvolte.
+                    </span>
+                    <span class="flag-example">
+                        Red Flag: Portali ufficiali hanno branding coerente con loghi, colori e font istituzionali.
+                    </span>
+                </li>
+
+                <li>
+                    <span class="flag-title">7. Assenza di Informazioni di Contatto Verificabili</span>
+                    <span class="flag-detail">
+                        Il sito non forniva numeri di telefono diretti, indirizzi fisici dell'ufficio mobilità, o
+                        collegamenti ai profili social ufficiali verificati dell'istituzione.
+                    </span>
+                    <span class="flag-example">
+                        Red Flag: Organizzazioni legittime forniscono sempre canali di contatto alternativi e
+                        verificabili.
+                    </span>
+                </li>
+
+                <li>
+                    <span class="flag-title">8. Form di Login Esterno al Portale Istituzionale</span>
+                    <span class="flag-detail">
+                        Il login NON reindirizzava al Single Sign-On (SSO) ufficiale dell'università o al portale EU
+                        autenticato, ma raccoglieva credenziali direttamente su una pagina terza.
+                    </span>
+                    <span class="flag-example">
+                        Red Flag: Le istituzioni usano sistemi SSO centralizzati (es. Microsoft 365, Google
+                        Workspace, Shibboleth) con domini riconoscibili.
+                    </span>
+                </li>
             </ul>
         </div>
 
+        <!-- Analisi Tecnica -->
+        <div class="section">
+            <h2>Come Riconoscere il Phishing: Checklist Tecnica</h2>
+            <div class="analysis-grid">
+                <div class="analysis-card">
+                    <h3>Verifica il Mittente</h3>
+                    <p>
+                        Controlla sempre l'header completo dell'email (non solo il nome visualizzato). Cerca
+                        incongruenze tra dominio mittente e organizzazione dichiarata.
+                    </p>
+                </div>
+                <div class="analysis-card">
+                    <h3>Ispeziona l'URL</h3>
+                    <p>
+                        Prima di cliccare, passa il mouse sopra il link per visualizzare l'URL reale. Verifica dominio,
+                        sottodomini, e presenza di typosquatting (es. "faceb00k.com" invece di "facebook.com").
+                    </p>
+                </div>
+                <div class="analysis-card">
+                    <h3>Certificato SSL/TLS</h3>
+                    <p>
+                        Clicca sul lucchetto nella barra degli indirizzi e verifica che il certificato sia rilasciato
+                        all'organizzazione corretta (non a un individuo o società sconosciuta).
+                    </p>
+                </div>
+                <div class="analysis-card">
+                    <h3>Grammatica e Ortografia</h3>
+                    <p>
+                        Email ufficiali sono redatte professionalmente. Errori grammaticali, formattazione
+                        inconsistente, o traduzioni automatiche sono segnali d'allarme.
+                    </p>
+                </div>
+                <div class="analysis-card">
+                    <h3>Richieste Inusuali</h3>
+                    <p>
+                        Se un'email chiede azioni mai richieste prima (es. "conferma credenziali", "aggiorna dati di
+                        pagamento"), contatta direttamente l'organizzazione tramite canali ufficiali.
+                    </p>
+                </div>
+                <div class="analysis-card">
+                    <h3>Verifica Incrociata</h3>
+                    <p>
+                        Confronta le informazioni ricevute via email con quelle pubblicate sui siti ufficiali o nei
+                        portali studente autenticati. Non fidarti MAI solo dell'email.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="cta-box">
+            <h2>Cosa Fare Adesso</h2>
+            <p>
+                Questa simulazione ti ha mostrato quanto sia facile cadere vittima di attacchi di phishing ben
+                costruiti. Ora che conosci i segnali d'allarme, sei meglio preparato a difenderti da minacce reali.
+                Condividi questa esperienza educativa con colleghi e amici per aumentare la consapevolezza collettiva
+                sulla cybersecurity. Ricorda: il dubbio è sempre meglio della fretta.
+            </p>
+        </div>
+
         <div class="footer">
-            <p><strong>Questo è stato un test di consapevolezza sulla sicurezza informatica.</strong></p>
-            <p>Le tue credenziali sono state registrate solo a scopo educativo e verranno eliminate.</p>
-            <p>Per domande, contatta il team di sicurezza IT.</p>
+            <p><strong>Security Awareness Training Campaign</strong></p>
+            <p style="margin-top: 12px;">
+                I tuoi dati NON sono stati compromessi. Questa è una simulazione a scopo educativo per migliorare la
+                consapevolezza sulla sicurezza informatica. Nessuna informazione è stata trasmessa a terzi.
+            </p>
         </div>
     </div>
 </body>
